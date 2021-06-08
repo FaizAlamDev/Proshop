@@ -35,6 +35,7 @@ const RegisterScreen = ({ location, history }) => {
 			dispatch(register(name, email, password))
 		}
 	}
+
 	return (
 		<FormContainer>
 			<h1>Sign Up</h1>
@@ -63,7 +64,7 @@ const RegisterScreen = ({ location, history }) => {
 				</Form.Group>
 
 				<Form.Group controlId='password'>
-					<Form.Label>Password</Form.Label>
+					<Form.Label>Password Address</Form.Label>
 					<Form.Control
 						type='password'
 						placeholder='Enter password'

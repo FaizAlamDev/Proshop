@@ -59,10 +59,6 @@ const OrderScreen = ({ match }) => {
 				setSdkReady(true)
 			}
 		}
-
-		// if (!order || order._id !== orderId) {
-		// 	dispatch(getOrderDetails(orderId))
-		// }
 	}, [dispatch, orderId, successPay, order])
 
 	const successPaymentHandler = (paymentResult) => {
@@ -86,7 +82,7 @@ const OrderScreen = ({ match }) => {
 								<strong>Name: </strong> {order.user.name}
 							</p>
 							<p>
-								<strong>Email: </strong>
+								<strong>Email: </strong>{' '}
 								<a href={`mailto:${order.user.email}`}>
 									{order.user.email}
 								</a>

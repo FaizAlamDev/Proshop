@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Rating({ value, text, color }) {
+const Rating = ({ value, text, color }) => {
 	return (
 		<div className='rating'>
 			<span>
@@ -63,7 +63,6 @@ function Rating({ value, text, color }) {
 					}
 				></i>
 			</span>
-
 			<span>{text && text}</span>
 		</div>
 	)

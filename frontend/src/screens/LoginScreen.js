@@ -12,8 +12,10 @@ const LoginScreen = ({ location, history }) => {
 	const [password, setPassword] = useState('')
 
 	const dispatch = useDispatch()
+
 	const userLogin = useSelector((state) => state.userLogin)
 	const { loading, error, userInfo } = userLogin
+
 	const redirect = location.search ? location.search.split('=')[1] : '/'
 
 	useEffect(() => {
@@ -21,11 +23,12 @@ const LoginScreen = ({ location, history }) => {
 			history.push(redirect)
 		}
 	}, [history, userInfo, redirect])
+
 	const submitHandler = (e) => {
 		e.preventDefault()
-
 		dispatch(login(email, password))
 	}
+
 	return (
 		<FormContainer>
 			<h1>Sign In</h1>
@@ -43,7 +46,7 @@ const LoginScreen = ({ location, history }) => {
 				</Form.Group>
 
 				<Form.Group controlId='password'>
-					<Form.Label>Password</Form.Label>
+					<Form.Label>Password Address</Form.Label>
 					<Form.Control
 						type='password'
 						placeholder='Enter password'

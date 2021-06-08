@@ -13,6 +13,7 @@ const Header = () => {
 	const logoutHandler = () => {
 		dispatch(logout())
 	}
+
 	return (
 		<header>
 			<Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
@@ -25,10 +26,10 @@ const Header = () => {
 						<Nav className='ml-auto'>
 							<LinkContainer to='/cart'>
 								<Nav.Link>
-									<i className='fas fa-shopping-cart'></i>Cart
+									<i className='fas fa-shopping-cart'></i>{' '}
+									Cart
 								</Nav.Link>
 							</LinkContainer>
-
 							{userInfo ? (
 								<NavDropdown
 									title={userInfo.name}
@@ -46,7 +47,7 @@ const Header = () => {
 							) : (
 								<LinkContainer to='/login'>
 									<Nav.Link>
-										<i className='fas fa-user'></i>Sign in
+										<i className='fas fa-user'></i> Sign In
 									</Nav.Link>
 								</LinkContainer>
 							)}
@@ -57,12 +58,12 @@ const Header = () => {
 											Users
 										</NavDropdown.Item>
 									</LinkContainer>
-									<LinkContainer to='/admin/productlist'>
+									<LinkContainer to='admin/productlist'>
 										<NavDropdown.Item>
 											Products
 										</NavDropdown.Item>
 									</LinkContainer>
-									<LinkContainer to='/admin/orderlist'>
+									<LinkContainer to='admin/orderlist'>
 										<NavDropdown.Item>
 											Orders
 										</NavDropdown.Item>

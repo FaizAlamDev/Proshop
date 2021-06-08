@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Form, Button, Row, Col, Table } from 'react-bootstrap'
+import { Table, Form, Button, Row, Col } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
@@ -50,6 +50,7 @@ const ProfileScreen = ({ location, history }) => {
 			dispatch(updateUserProfile({ id: user._id, name, email, password }))
 		}
 	}
+
 	return (
 		<Row>
 			<Col md={3}>
@@ -82,7 +83,7 @@ const ProfileScreen = ({ location, history }) => {
 					</Form.Group>
 
 					<Form.Group controlId='password'>
-						<Form.Label>Password</Form.Label>
+						<Form.Label>Password Address</Form.Label>
 						<Form.Control
 							type='password'
 							placeholder='Enter password'
