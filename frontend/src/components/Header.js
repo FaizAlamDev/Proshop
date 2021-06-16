@@ -20,8 +20,15 @@ const Header = () => {
 		<header>
 			<Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
 				<Container>
-					<LinkContainer to='/'>
-						<Navbar.Brand>ProShop</Navbar.Brand>
+					<LinkContainer to='/' className='LinkContainer'>
+						<Navbar.Brand>
+							<img
+								src='/images/forte.svg'
+								alt='FORTE'
+								height='90%'
+								width='90%'
+							/>
+						</Navbar.Brand>
 					</LinkContainer>
 					<Navbar.Toggle aria-controls='basic-navbar-nav' />
 					<Navbar.Collapse id='basic-navbar-nav'>
