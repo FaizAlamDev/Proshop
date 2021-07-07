@@ -13,7 +13,7 @@ const PaymentScreen = ({ history }) => {
 		history.push('/shipping')
 	}
 
-	const [paymentMethod, setPaymentMethod] = useState('PayPal')
+	const [paymentMethod, setPaymentMethod] = useState()
 
 	const dispatch = useDispatch()
 
@@ -37,17 +37,24 @@ const PaymentScreen = ({ history }) => {
 							id='PayPal'
 							name='paymentMethod'
 							value='PayPal'
-							checked
 							onChange={(e) => setPaymentMethod(e.target.value)}
 						></Form.Check>
 						{/* <Form.Check
-              type='radio'
-              label='Stripe'
-              id='Stripe'
-              name='paymentMethod'
-              value='Stripe'
-              onChange={(e) => setPaymentMethod(e.target.value)}
-            ></Form.Check> */}
+							type='radio'
+							label='Stripe'
+							id='Stripe'
+							name='paymentMethod'
+							value='Stripe'
+							onChange={(e) => setPaymentMethod(e.target.value)}
+						></Form.Check> */}
+						<Form.Check
+							type='radio'
+							label='Cash On Delivery'
+							id='CashOnDelivery'
+							name='paymentMethod'
+							value='CashOnDelivery'
+							onChange={(e) => setPaymentMethod(e.target.value)}
+						></Form.Check>
 					</Col>
 				</Form.Group>
 

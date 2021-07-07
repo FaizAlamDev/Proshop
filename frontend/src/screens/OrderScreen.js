@@ -219,13 +219,22 @@ const OrderScreen = ({ match, history }) => {
 							{!order.isPaid && (
 								<ListGroup.Item>
 									{loadingPay && <Loader />}
-									{!sdkReady ? (
-										<Loader />
+									{order.paymentMethod ===
+									'CashOnDelivery' ? (
+										<p>Amount will be paid on delivery</p>
+									) : order.paymentMethod === 'PayPal' ? (
+										!sdkReady ? (
+											<Loader />
+										) : (
+											<PayPalButton
+												amount={order.totalPrice}
+												onSuccess={
+													successPaymentHandler
+												}
+											></PayPalButton>
+										)
 									) : (
-										<PayPalButton
-											amount={order.totalPrice}
-											onSuccess={successPaymentHandler}
-										/>
+										<p>No Payment Method selected</p>
 									)}
 								</ListGroup.Item>
 							)}
