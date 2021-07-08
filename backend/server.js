@@ -3,6 +3,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import colors from 'colors'
 import morgan from 'morgan'
+import nodemailer from 'nodemailer'
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 import connectDB from './config/db.js'
 
@@ -31,6 +32,40 @@ app.use('/api/upload', uploadRoutes)
 app.get('/api/config/paypal', (req, res) =>
 	res.send(process.env.PAYPAL_CLIENT_ID)
 )
+
+app.post('/api/send_mail', async (req, res) => {
+	let { order } = await req.body
+	const transport = nodemailer.createTransport({
+		host: process.env.MAIL_HOST,
+		port: process.env.MAIL_PORT,
+		auth: {
+			user: process.env.MAIL_USER,
+			pass: process.env.MAIL_PASS,
+		},
+	})
+
+	await transport.sendMail({
+		from: process.env.MAIL_FROM,
+		to: order.user.email,
+		subject: 'test email',
+		html: `
+			<h2>Thank you for ordering from FORTE-SITE</h2>
+			<p>Your order has been placed</p>
+			<h3>Shipping Address:</h3>
+			<ul>
+				<li>Address: ${order.shippingAddress.address}</li>
+				<li>City: ${order.shippingAddress.city}</li>
+				<li>Postal Code: ${order.shippingAddress.postalCode}</li>
+				<li>Country: ${order.shippingAddress.country}</li>
+			</ul>
+			<h3>Order Details:</h3>
+			<p>Your Payment Method: ${order.paymentMethod}</p>
+			<p>Your Final Price: ${order.itemsPrice}</p>
+			<p>You ordered:</p>
+			`,
+	})
+	res.status(200).end()
+})
 
 const __dirname = path.resolve()
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')))

@@ -53,6 +53,17 @@ const OrderScreen = ({ match, history }) => {
 		if (!userInfo) {
 			history.push('/login')
 		}
+		const handleSend = async () => {
+			try {
+				await axios.post('/api/send_mail', {
+					order,
+				})
+			} catch (err) {
+				console.log(err)
+			}
+		}
+		handleSend()
+
 		const addPayPalScript = async () => {
 			const { data: clientId } = await axios.get('/api/config/paypal')
 			const script = document.createElement('script')
