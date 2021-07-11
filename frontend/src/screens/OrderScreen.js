@@ -53,16 +53,6 @@ const OrderScreen = ({ match, history }) => {
 		if (!userInfo) {
 			history.push('/login')
 		}
-		const handleSend = async () => {
-			try {
-				await axios.post('/api/send_mail', {
-					order,
-				})
-			} catch (err) {
-				console.log(err)
-			}
-		}
-		handleSend()
 
 		const addPayPalScript = async () => {
 			const { data: clientId } = await axios.get('/api/config/paypal')
@@ -87,6 +77,17 @@ const OrderScreen = ({ match, history }) => {
 				setSdkReady(true)
 			}
 		}
+
+		const handleSend = async () => {
+			try {
+				await axios.post('/api/config/send_mail', {
+					order,
+				})
+			} catch (err) {
+				console.log(err)
+			}
+		}
+		handleSend()
 	}, [
 		userInfo,
 		history,
@@ -232,7 +233,9 @@ const OrderScreen = ({ match, history }) => {
 									{loadingPay && <Loader />}
 									{order.paymentMethod ===
 									'CashOnDelivery' ? (
-										<p>Amount will be paid on delivery</p>
+										<Message>
+											Amount will be paid on Delivery
+										</Message>
 									) : order.paymentMethod === 'PayPal' ? (
 										!sdkReady ? (
 											<Loader />

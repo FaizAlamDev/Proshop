@@ -33,24 +33,29 @@ app.get('/api/config/paypal', (req, res) =>
 	res.send(process.env.PAYPAL_CLIENT_ID)
 )
 
-app.post('/api/send_mail', async (req, res) => {
-	let { order } = await req.body
+app.post('/api/config/send_mail', async (req, res) => {
+	let { order } = req.body
 	const transport = nodemailer.createTransport({
-		host: process.env.MAIL_HOST,
-		port: process.env.MAIL_PORT,
+		service: 'Gmail',
 		auth: {
-			user: process.env.MAIL_USER,
-			pass: process.env.MAIL_PASS,
+			user: process.env.GMAIL_USER,
+			pass: process.env.GMAIL_PASS,
 		},
+	})
+	let user = await order.user
+	let orderItems = await order.orderItems
+	const info = orderItems.map((item) => {
+		return `<li>${item.qty} ${item.name} for ${item.price} rupees each.</li>`
 	})
 
 	await transport.sendMail({
-		from: process.env.MAIL_FROM,
-		to: order.user.email,
-		subject: 'test email',
+		from: process.env.GMAIL_USER,
+		to: user.email,
+		subject: 'Your Order has been Placed.',
 		html: `
 			<h2>Thank you for ordering from FORTE-SITE</h2>
 			<p>Your order has been placed</p>
+			<p>Order ID: ${order._id}</p>
 			<h3>Shipping Address:</h3>
 			<ul>
 				<li>Address: ${order.shippingAddress.address}</li>
@@ -60,8 +65,15 @@ app.post('/api/send_mail', async (req, res) => {
 			</ul>
 			<h3>Order Details:</h3>
 			<p>Your Payment Method: ${order.paymentMethod}</p>
-			<p>Your Final Price: ${order.itemsPrice}</p>
-			<p>You ordered:</p>
+			<p>Your Final Price: ${order.totalPrice}</p>
+			<p>You Ordered:</p>
+			<ul>${info}</ul>
+			<p>Your order will be delivered within 3 working days</p>
+			<h3>THANK YOU</h3>
+			<hr>
+			<p>In case of any queries:</p>
+			<p>You can contact <strong>7007965698</strong></p>
+			<p>Or Email: <strong>faizalam9883@gmail.com</strong></p>
 			`,
 	})
 	res.status(200).end()
