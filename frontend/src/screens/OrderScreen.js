@@ -77,17 +77,6 @@ const OrderScreen = ({ match, history }) => {
 				setSdkReady(true)
 			}
 		}
-
-		const handleSend = async () => {
-			try {
-				await axios.post('/api/config/send_mail', {
-					order,
-				})
-			} catch (err) {
-				console.log(err)
-			}
-		}
-		handleSend()
 	}, [
 		userInfo,
 		history,

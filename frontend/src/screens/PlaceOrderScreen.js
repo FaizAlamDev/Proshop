@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -12,6 +13,9 @@ const PlaceOrderScreen = ({ history }) => {
 	const dispatch = useDispatch()
 
 	const cart = useSelector((state) => state.cart)
+
+	const userLogin = useSelector((state) => state.userLogin)
+	const { userInfo } = userLogin
 
 	if (!cart.shippingAddress.address) {
 		history.push('/shipping')
@@ -59,6 +63,12 @@ const PlaceOrderScreen = ({ history }) => {
 				totalPrice: cart.totalPrice,
 			})
 		)
+	}
+	const sendEmail = async () => {
+		await axios.post('/api/config/send_mail', {
+			cart,
+			userInfo,
+		})
 	}
 
 	return (
@@ -161,7 +171,10 @@ const PlaceOrderScreen = ({ history }) => {
 									type='button'
 									className='btn-block'
 									disabled={cart.cartItems === 0}
-									onClick={placeOrderHandler}
+									onClick={() => {
+										placeOrderHandler()
+										sendEmail()
+									}}
 								>
 									Place Order
 								</Button>

@@ -34,38 +34,37 @@ app.get('/api/config/paypal', (req, res) =>
 )
 
 app.post('/api/config/send_mail', async (req, res) => {
-	let { order } = req.body
-	const transport = nodemailer.createTransport({
-		service: 'Gmail',
-		auth: {
-			user: process.env.GMAIL_USER,
-			pass: process.env.GMAIL_PASS,
-		},
-	})
-	let user = await order.user
-	let orderItems = await order.orderItems
-	const info = orderItems.map((item) => {
-		return `<li>${item.qty} ${item.name} for ${item.price} rupees each.</li>`
-	})
+	let { cart, userInfo } = req.body
+	if (cart && userInfo) {
+		const transport = nodemailer.createTransport({
+			service: 'Gmail',
+			auth: {
+				user: process.env.GMAIL_USER,
+				pass: process.env.GMAIL_PASS,
+			},
+		})
+		let cartItems = cart.cartItems
+		const info = cartItems.map((item) => {
+			return `<li>${item.qty} ${item.name} for &#8377; ${item.price} each.</li>`
+		})
 
-	await transport.sendMail({
-		from: process.env.GMAIL_USER,
-		to: user.email,
-		subject: 'Your Order has been Placed.',
-		html: `
+		await transport.sendMail({
+			from: process.env.GMAIL_USER,
+			to: userInfo.email,
+			subject: 'Your Order has been Placed.',
+			html: `
 			<h2>Thank you for ordering from FORTE-SITE</h2>
 			<p>Your order has been placed</p>
-			<p>Order ID: ${order._id}</p>
 			<h3>Shipping Address:</h3>
 			<ul>
-				<li>Address: ${order.shippingAddress.address}</li>
-				<li>City: ${order.shippingAddress.city}</li>
-				<li>Postal Code: ${order.shippingAddress.postalCode}</li>
-				<li>Country: ${order.shippingAddress.country}</li>
+				<li>Address: ${cart.shippingAddress.address}</li>
+				<li>City: ${cart.shippingAddress.city}</li>
+				<li>Postal Code: ${cart.shippingAddress.postalCode}</li>
+				<li>Country: ${cart.shippingAddress.country}</li>
 			</ul>
 			<h3>Order Details:</h3>
-			<p>Your Payment Method: ${order.paymentMethod}</p>
-			<p>Your Final Price: ${order.totalPrice}</p>
+			<p>Your Payment Method: ${cart.paymentMethod}</p>
+			<p>Your Final Price: &#8377; ${cart.totalPrice}</p>
 			<p>You Ordered:</p>
 			<ul>${info}</ul>
 			<p>Your order will be delivered within 3 working days</p>
@@ -75,8 +74,9 @@ app.post('/api/config/send_mail', async (req, res) => {
 			<p>You can contact <strong>7007965698</strong></p>
 			<p>Or Email: <strong>faizalam9883@gmail.com</strong></p>
 			`,
-	})
-	res.status(200).end()
+		})
+		res.status(200).end()
+	}
 })
 
 const __dirname = path.resolve()
