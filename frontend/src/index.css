@@ -53,9 +53,18 @@ h2 {
 	max-width: 80px;
 }
 
+.searchbox {
+	padding: 8px;
+	margin: 0;
+}
+
 @media (max-width: 900px) {
 	.carousel-caption h2 {
 		font-size: 2.5vw;
+	}
+	.searchbox {
+		padding: 8px;
+		margin-top: 8px;
 	}
 }
 
