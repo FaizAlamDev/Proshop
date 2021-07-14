@@ -118,6 +118,9 @@ const OrderScreen = ({ match, history }) => {
 								</a>
 							</p>
 							<p>
+								<strong>Number: </strong> {order.user.number}
+							</p>
+							<p>
 								<strong>Address:</strong>
 								{order.shippingAddress.address},{' '}
 								{order.shippingAddress.city}{' '}
@@ -260,6 +263,13 @@ const OrderScreen = ({ match, history }) => {
 					</Card>
 				</Col>
 			</Row>
+			<div style={{ textAlign: 'center' }}>
+				<Message>
+					<Link to='/'>
+						YOUR ORDER HAS BEEN PLACED. BACK TO HOME?
+					</Link>
+				</Message>
+			</div>
 		</>
 	)
 }

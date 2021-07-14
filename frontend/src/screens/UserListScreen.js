@@ -46,6 +46,7 @@ const UserListScreen = ({ history }) => {
 							<th>ID</th>
 							<th>NAME</th>
 							<th>EMAIL</th>
+							<th>NUMBER</th>
 							<th>ADMIN</th>
 							<th></th>
 						</tr>
@@ -60,6 +61,7 @@ const UserListScreen = ({ history }) => {
 										{user.email}
 									</a>
 								</td>
+								<td>{user.number}</td>
 								<td>
 									{user.isAdmin ? (
 										<i
