@@ -53,7 +53,7 @@ app.post('/api/config/send_mail', async (req, res) => {
 			to: userInfo.email,
 			subject: 'Your Order has been Placed.',
 			html: `
-			<h2>Thank you for ordering from FORTE-SITE</h2>
+			<h2>Thank you for ordering from FORTE</h2>
 			<p>Your order has been placed</p>
 			<h3>Shipping Address:</h3>
 			<ul>
