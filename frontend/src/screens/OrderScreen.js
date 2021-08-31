@@ -1,6 +1,5 @@
-import axios from 'axios'
+// import axios from 'axios'
 import React, { useState, useEffect } from 'react'
-import { PayPalButton } from 'react-paypal-button-v2'
 import { Link } from 'react-router-dom'
 import { Row, Col, ListGroup, Image, Card, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -18,8 +17,6 @@ import {
 
 const OrderScreen = ({ match, history }) => {
 	const orderId = match.params.id
-
-	const [sdkReady, setSdkReady] = useState(false)
 
 	const dispatch = useDispatch()
 
@@ -54,29 +51,18 @@ const OrderScreen = ({ match, history }) => {
 			history.push('/login')
 		}
 
-		const addPayPalScript = async () => {
-			const { data: clientId } = await axios.get('/api/config/paypal')
-			const script = document.createElement('script')
-			script.type = 'text/javascript'
-			script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`
-			script.async = true
-			script.onload = () => {
-				setSdkReady(true)
-			}
-			document.body.appendChild(script)
-		}
-
 		if (!order || successPay || successDeliver || order._id !== orderId) {
 			dispatch({ type: ORDER_PAY_RESET })
 			dispatch({ type: ORDER_DELIVER_RESET })
 			dispatch(getOrderDetails(orderId))
-		} else if (!order.isPaid) {
-			if (!window.paypal) {
-				addPayPalScript()
-			} else {
-				setSdkReady(true)
-			}
 		}
+		// else if (!order.isPaid) {
+		// 	if (!window.paypal) {
+		// 		addPayPalScript()
+		// 	} else {
+		// 		setSdkReady(true)
+		// 	}
+		// }
 	}, [
 		userInfo,
 		history,
@@ -228,22 +214,37 @@ const OrderScreen = ({ match, history }) => {
 										<Message>
 											Amount will be paid on Delivery
 										</Message>
-									) : order.paymentMethod === 'PayPal' ? (
-										!sdkReady ? (
-											<Loader />
-										) : (
-											<PayPalButton
-												amount={order.totalPrice}
-												onSuccess={
-													successPaymentHandler
-												}
-											></PayPalButton>
-										)
 									) : (
 										<p>No Payment Method selected</p>
 									)}
 								</ListGroup.Item>
 							)}
+
+							{userInfo &&
+								userInfo.isAdmin &&
+								order.paymentMethod === 'CashOnDelivery' &&
+								!order.isPaid && (
+									<ListGroup.Item>
+										<Button
+											type='button'
+											className='btn btn-block'
+											onClick={() =>
+												successPaymentHandler({
+													id: Math.floor(
+														Math.random() *
+															10000000000
+													).toString(),
+													status: 'COMPLETED',
+													update_time:
+														Date().toString(),
+												})
+											}
+										>
+											Mark As Paid
+										</Button>
+									</ListGroup.Item>
+								)}
+
 							{loadingDeliver && <Loader />}
 							{userInfo &&
 								userInfo.isAdmin &&
