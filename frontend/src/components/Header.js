@@ -38,6 +38,11 @@ const Header = () => {
 							)}
 						/>
 						<Nav className='ml-auto'>
+							<LinkContainer to='/blogs'>
+								<Nav.Link>
+									<i className='fa solid fa-blog'></i> Blogs
+								</Nav.Link>
+							</LinkContainer>
 							<LinkContainer to='/cart'>
 								<Nav.Link>
 									<i className='fas fa-shopping-cart'></i>{' '}
