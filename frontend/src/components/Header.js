@@ -23,9 +23,9 @@ const Header = () => {
 					<LinkContainer to='/' className='LinkContainer'>
 						<Navbar.Brand>
 							<img
-								src='/images/forte.svg'
-								alt='FORTE'
-								height='90%'
+								src='/images/unicofy.jpeg'
+								alt='UNICOFY'
+								height='50%'
 								width='90%'
 							/>
 						</Navbar.Brand>

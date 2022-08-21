@@ -12,7 +12,7 @@ const Meta = ({ title, description, keywords }) => {
 }
 
 Meta.defaultProps = {
-	title: 'FORTE',
+	title: 'UNICOFY',
 	description: 'We sell the best products for cheapest prices',
 	keywords: 'Leather shoes, Leather, Shoes, Ladies Shoes, Mens Shoes',
 }
