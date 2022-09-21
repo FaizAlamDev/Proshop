@@ -35,7 +35,7 @@ const HomeScreen = ({ match }) => {
           Go Back
         </Link>
       )}
-      <FilterBar />
+      <FilterBar products={products} />
       <h1>Latest Products</h1>
       {loading ? (
         <Loader />
