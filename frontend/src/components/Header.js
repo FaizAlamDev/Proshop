@@ -18,7 +18,7 @@ const Header = () => {
 
 	return (
 		<header>
-			<Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
+			<Navbar variant='dark' expand='lg' collapseOnSelect>
 				<Container>
 					<LinkContainer to='/' className='LinkContainer'>
 						<Navbar.Brand>
@@ -27,6 +27,7 @@ const Header = () => {
 								alt='UNICOFY'
 								height='50%'
 								width='90%'
+								className="rounded border border-success"
 							/>
 						</Navbar.Brand>
 					</LinkContainer>

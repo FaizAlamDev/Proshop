@@ -5,12 +5,15 @@ import Rating from './Rating'
 
 const Product = ({ product }) => {
 	return (
-		<Card className='my-3 p-3 rounded'>
+		<Card className='my-3 rounded border-dark'>
 			<Link to={`/product/${product._id}`}>
-				<Card.Img src={product.image} variant='top' />
+				{/* change this to */}
+				<Card.Img src="https://unicofy.com/uploads/image-1663513550845.jpg" 
+				className="rounded-top"
+				variant='top' />
 			</Link>
 
-			<Card.Body>
+			<Card.Body className="pb-0">
 				<Link to={`/product/${product._id}`}>
 					<Card.Title as='div'>
 						<strong>{product.name}</strong>
@@ -21,6 +24,7 @@ const Product = ({ product }) => {
 					<Rating
 						value={product.rating}
 						text={`${product.numReviews} reviews`}
+						color="#000"
 					/>
 				</Card.Text>
 
