@@ -17,7 +17,7 @@ function FilterBar({ products, mp, fp, setMP, setFP }) {
   };
   const getFemaleProducts = () => {
     axios
-      .get("/api/products/cat/womensPefume")
+      .get("/api/products/cat/womensPerfume")
       .then((res) => {
         setFP(res.data);
         setMP([]);
