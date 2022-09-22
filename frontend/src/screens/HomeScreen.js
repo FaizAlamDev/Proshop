@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col } from "react-bootstrap";
@@ -21,6 +21,9 @@ const HomeScreen = ({ match }) => {
   const productList = useSelector((state) => state.productList);
   const { loading, error, products, page, pages } = productList;
 
+  const [mp, setMP] = useState([]);
+  const [fp, setFP] = useState([]);
+
   useEffect(() => {
     dispatch(listProducts(keyword, pageNumber));
   }, [dispatch, keyword, pageNumber]);
@@ -35,7 +38,13 @@ const HomeScreen = ({ match }) => {
           Go Back
         </Link>
       )}
-      <FilterBar products={products} />
+      <FilterBar
+        products={products}
+        mp={mp}
+        fp={fp}
+        setMP={setMP}
+        setFP={setFP}
+      />
       <h1>Latest Products</h1>
       {loading ? (
         <Loader />
@@ -44,11 +53,25 @@ const HomeScreen = ({ match }) => {
       ) : (
         <>
           <Row>
-            {products.map((product) => (
-              <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-                <Product product={product} />
-              </Col>
-            ))}
+            {mp.length === 0 &&
+              fp.length === 0 &&
+              products.map((product) => (
+                <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+                  <Product product={product} />
+                </Col>
+              ))}
+            {mp.length !== 0 &&
+              mp.map((product) => (
+                <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+                  <Product product={product} />
+                </Col>
+              ))}
+            {fp.length !== 0 &&
+              fp.map((product) => (
+                <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+                  <Product product={product} />
+                </Col>
+              ))}
           </Row>
           <Paginate
             pages={pages}
