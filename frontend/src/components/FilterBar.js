@@ -28,14 +28,21 @@ function FilterBar({ products, mp, fp, setMP, setFP }) {
     setMP([]);
     setFP([]);
   };
+  const buttonStyle = {
+    backgroundColor:"#dfd",
+    color:"#000",
+    borderBottomColor:"#4BFF73",
+    borderWidth:5,
+    margin:0
+  }
   return (
-    <>
+    <div>
       <ButtonGroup className="mb-2 mt-3">
-        <Button onClick={getAllProducts}>All</Button>
-        <Button onClick={getMaleProducts}>Male</Button>
-        <Button onClick={getFemaleProducts}>Female</Button>
+        <Button onClick={getAllProducts} style={(mp.length===0 && fp.length === 0) ? buttonStyle:{}}>Kannauj's Perfume</Button>
+        <Button onClick={getMaleProducts} style={(mp.length!==0 && fp.length === 0) ? buttonStyle:{}}>Men's</Button>
+        <Button onClick={getFemaleProducts} style={(mp.length===0 && fp.length !== 0) ? buttonStyle:{}}>Women's</Button>
       </ButtonGroup>
-    </>
+    </div>
   );
 }
 

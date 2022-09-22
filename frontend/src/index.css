@@ -8,6 +8,13 @@ main {
 div{
 	border-radius: 10px;
 }
+button{
+	outline:none !important;
+}
+.btn:focus{
+	outline:none !important;
+	box-shadow: none !important;
+}
 header>nav>div{
 	background-color: #000 !important;
 	width:100% !important;
@@ -109,7 +116,6 @@ h2 {
 .blogContent {
 	font-size: 16px;
 }
-
 @media (max-width: 900px) {
 	.carousel-caption h2 {
 		font-size: 2.5vw;
@@ -131,4 +137,7 @@ h2 {
 	.form-control-select {
 		width: 250px;
 	}
+}
+.LinkContainer{
+	transform: scale(1.2);
 }
