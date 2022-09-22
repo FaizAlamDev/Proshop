@@ -24,9 +24,14 @@ function FilterBar({ products, mp, fp, setMP, setFP }) {
       })
       .catch((err) => console.log(err));
   };
+  const getAllProducts = () => {
+    setMP([]);
+    setFP([]);
+  };
   return (
     <>
       <ButtonGroup className="mb-2 mt-3">
+        <Button onClick={getAllProducts}>All</Button>
         <Button onClick={getMaleProducts}>Male</Button>
         <Button onClick={getFemaleProducts}>Female</Button>
       </ButtonGroup>
