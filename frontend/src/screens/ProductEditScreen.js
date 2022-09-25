@@ -174,11 +174,13 @@ const ProductEditScreen = ({ match, history }) => {
 						<Form.Group controlId='category'>
 							<Form.Label>Category</Form.Label>
 							<Form.Control
-								type='text'
-								placeholder='Enter category'
-								value={category}
+								as='select'
+								custom
 								onChange={(e) => setCategory(e.target.value)}
-							></Form.Control>
+							>
+								<option value="mensPerfume">Men's Perfume</option>
+								<option value="womensPerfume">Women's Perfume</option>
+							</Form.Control>
 						</Form.Group>
 
 						<Form.Group controlId='description'>

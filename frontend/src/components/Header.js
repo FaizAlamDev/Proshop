@@ -5,6 +5,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
 import SearchBox from './SearchBox'
 import { logout } from '../actions/userActions'
+import "../index.css"
 
 const Header = () => {
 	const dispatch = useDispatch()
@@ -18,7 +19,7 @@ const Header = () => {
 
 	return (
 		<header>
-			<Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
+			<Navbar variant='dark' expand='lg' collapseOnSelect>
 				<Container>
 					<LinkContainer to='/' className='LinkContainer'>
 						<Navbar.Brand>
@@ -27,6 +28,7 @@ const Header = () => {
 								alt='UNICOFY'
 								height='50%'
 								width='90%'
+								className="rounded"
 							/>
 						</Navbar.Brand>
 					</LinkContainer>

@@ -1,5 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@500&display=swap');
+*{
+	font-family: 'Mulish', sans-serif;
+}
 main {
 	min-height: 80vh;
+}
+div{
+	border-radius: 10px;
+}
+button{
+	outline:none !important;
+}
+.btn:focus{
+	outline:none !important;
+	box-shadow: none !important;
+}
+header>nav>div{
+	background-color: #000 !important;
+	width:100% !important;
+}
+header>nav{
+	margin:0 !important;
+	padding:5px !important;
+	background-color: #000 !important;
+	box-shadow:0 0 15px 10px rgba(0, 0, 0, 0.279);
+}
+header{
+	background-color: #000 !important;
 }
 
 h3 {
@@ -89,7 +116,6 @@ h2 {
 .blogContent {
 	font-size: 16px;
 }
-
 @media (max-width: 900px) {
 	.carousel-caption h2 {
 		font-size: 2.5vw;
@@ -111,4 +137,7 @@ h2 {
 	.form-control-select {
 		width: 250px;
 	}
+}
+.LinkContainer{
+	transform: scale(1.2);
 }
