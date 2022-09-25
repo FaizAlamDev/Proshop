@@ -9,7 +9,7 @@ const Product = ({ product }) => {
       <Link to={`/product/${product._id}`}>
         {/* change this to */}
         <Card.Img
-          src="https://unicofy.com/uploads/image-1663513550845.jpg"
+          src={product.image}
           className="rounded-top"
           variant="top"
         />
