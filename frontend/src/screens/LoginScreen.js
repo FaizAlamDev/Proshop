@@ -32,6 +32,23 @@ const LoginScreen = ({ location, history }) => {
 
 	return (
 		<FormContainer>
+			<Row className='py-3'>
+				<Col>
+					New Customer?{' '}
+					<Link
+						to={
+							redirect
+								? `/register?redirect=${redirect}`
+								: '/register'
+						}
+					>
+						Register Account
+					</Link>
+				</Col>
+			</Row>
+
+			<br />
+
 			<h1>Sign In</h1>
 			{error && <Message variant='danger'>{error}</Message>}
 			{loading && <Loader />}
@@ -70,21 +87,6 @@ const LoginScreen = ({ location, history }) => {
 					Sign In
 				</Button>
 			</Form>
-
-			<Row className='py-3'>
-				<Col>
-					New Customer?{' '}
-					<Link
-						to={
-							redirect
-								? `/register?redirect=${redirect}`
-								: '/register'
-						}
-					>
-						Register
-					</Link>
-				</Col>
-			</Row>
 		</FormContainer>
 	)
 }

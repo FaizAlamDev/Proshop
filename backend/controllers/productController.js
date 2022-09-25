@@ -11,11 +11,11 @@ const getProducts = asyncHandler(async (req, res) => {
 
 	const keyword = req.query.keyword
 		? {
-			name: {
-				$regex: req.query.keyword,
-				$options: 'i',
-			},
-		}
+				name: {
+					$regex: req.query.keyword,
+					$options: 'i',
+				},
+		  }
 		: {}
 
 	const count = await Product.countDocuments({ ...keyword })
@@ -151,6 +151,9 @@ const getTopProducts = asyncHandler(async (req, res) => {
 	res.json(products)
 })
 
+// @desc    Get product by category
+// @route   GET /api/products/cat/:name
+// @access	Public
 const getByCategory = asyncHandler(async (req, res) => {
 	const { name } = req.params
 	const category = await Product.find({ category: name })
@@ -165,5 +168,5 @@ export {
 	updateProduct,
 	createProductReview,
 	getTopProducts,
-	getByCategory
+	getByCategory,
 }

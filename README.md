@@ -1,7 +1,6 @@
 # UNICOFY eCommerce Platform
 
 > eCommerce platform built with the MERN stack & Redux.
-> This is the course project for my MERN eCommerce course
 
 ## Features
 
@@ -16,8 +15,6 @@
 -   Admin Order details page
 -   Mark orders as delivered option
 -   Checkout process (shipping, payment method, etc)
--   PayPal / credit card integration
--   Database seeder (products & users)
 
 ## Usage
 
@@ -29,8 +26,6 @@ Create a .env file in then root and add the following
 NODE_ENV = development
 PORT = 5000
 MONGO_URI = your mongodb uri
-JWT_SECRET = 'abc123'
-PAYPAL_CLIENT_ID = your paypal client id
 ```
 
 ### Install Dependencies (frontend & backend)
@@ -58,34 +53,9 @@ cd frontend
 npm run build
 ```
 
-There is a Heroku postbuild script, so if you push to Heroku, no need to build manually for deployment to Heroku
-
-### Seed Database
-
-You can use the following commands to seed the database with some sample users and products as well as destroy all data
-
-```
-# Import data
-npm run data:import
-# Destroy data
-npm run data:destroy
-```
-
-```
-Sample User Logins
-admin@example.com (Admin)
-123456
-john@example.com (Customer)
-123456
-jane@example.com (Customer)
-123456
-```
-
 ## License
 
 The MIT License
-
-Copyright (c) 2020 Traversy Media https://traversymedia.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

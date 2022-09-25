@@ -73,8 +73,8 @@ app.post('/api/config/send_mail', async (req, res) => {
 			<h3>THANK YOU</h3>
 			<hr>
 			<p>In case of any queries:</p>
-			<p>You can contact <strong>7007965698</strong></p>
-			<p>Or Email: <strong>faizalam9883@gmail.com</strong></p>
+			<p>You can contact <strong>8299023118</strong></p>
+			<p>Or Email: <strong>mayankkhanma992@gmail.com</strong></p>
 			`,
 		})
 		res.status(200).end()
