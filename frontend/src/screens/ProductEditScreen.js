@@ -178,6 +178,7 @@ const ProductEditScreen = ({ match, history }) => {
 								custom
 								onChange={(e) => setCategory(e.target.value)}
 							>
+								<option value="sample">Select Category</option>
 								<option value="mensPerfume">Men's Perfume</option>
 								<option value="womensPerfume">Women's Perfume</option>
 							</Form.Control>
