@@ -12,9 +12,10 @@ const Meta = ({ title, description, keywords }) => {
 }
 
 Meta.defaultProps = {
-	title: 'UNICOFY',
-	description: 'We sell the best products for cheapest prices',
-	keywords: 'Leather shoes, Leather, Shoes, Ladies Shoes, Mens Shoes',
+	title: 'yourWishBasket',
+	description: 'Customize your gifting needs for all occasions',
+	keywords:
+		'Gift Baskets, Pinewood Trays, Money Cards, MDF Trays, Paper Bags, Ring Trays',
 }
 
 export default Meta
