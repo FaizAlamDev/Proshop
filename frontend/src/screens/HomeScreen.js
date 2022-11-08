@@ -9,7 +9,7 @@ import Paginate from '../components/Paginate'
 import ProductCarousel from '../components/ProductCarousel'
 import Meta from '../components/Meta'
 import { listProducts } from '../actions/productActions'
-import FilterBar from '../components/FilterBar'
+// import FilterBar from '../components/FilterBar'
 
 const HomeScreen = ({ match }) => {
 	const keyword = match.params.keyword
@@ -21,8 +21,8 @@ const HomeScreen = ({ match }) => {
 	const productList = useSelector((state) => state.productList)
 	const { loading, error, products, page, pages } = productList
 
-	const [mp, setMP] = useState([])
-	const [fp, setFP] = useState([])
+	// const [mp, setMP] = useState([])
+	// const [fp, setFP] = useState([])
 
 	useEffect(() => {
 		dispatch(listProducts(keyword, pageNumber))
@@ -38,13 +38,13 @@ const HomeScreen = ({ match }) => {
 					Go Back
 				</Link>
 			)}
-			<FilterBar
+			{/* <FilterBar
 				products={products}
 				mp={mp}
 				fp={fp}
 				setMP={setMP}
 				setFP={setFP}
-			/>
+			/> */}
 			<h1>Latest Products</h1>
 			{loading ? (
 				<Loader />
@@ -53,7 +53,9 @@ const HomeScreen = ({ match }) => {
 			) : (
 				<>
 					<Row>
-						{mp.length === 0 &&
+						{products.map((product) => (
+							<Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+								{/* {mp.length === 0 &&
 							fp.length === 0 &&
 							products.map((product) => (
 								<Col
@@ -86,10 +88,10 @@ const HomeScreen = ({ match }) => {
 									md={6}
 									lg={4}
 									xl={3}
-								>
-									<Product product={product} />
-								</Col>
-							))}
+								> */}
+								<Product product={product} />
+							</Col>
+						))}
 					</Row>
 					<Paginate
 						pages={pages}

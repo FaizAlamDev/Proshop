@@ -1,4 +1,4 @@
-import { request } from 'express'
+// import { request } from 'express'
 import asyncHandler from 'express-async-handler'
 import Product from '../models/productModel.js'
 
@@ -154,11 +154,11 @@ const getTopProducts = asyncHandler(async (req, res) => {
 // @desc    Get product by category
 // @route   GET /api/products/cat/:name
 // @access	Public
-const getByCategory = asyncHandler(async (req, res) => {
-	const { name } = req.params
-	const category = await Product.find({ category: name })
-	res.json(category)
-})
+// const getByCategory = asyncHandler(async (req, res) => {
+// 	const { name } = req.params
+// 	const category = await Product.find({ category: name })
+// 	res.json(category)
+// })
 
 export {
 	getProducts,
@@ -168,5 +168,5 @@ export {
 	updateProduct,
 	createProductReview,
 	getTopProducts,
-	getByCategory,
+	// getByCategory,
 }
